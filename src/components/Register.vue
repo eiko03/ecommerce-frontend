@@ -56,9 +56,6 @@ export default {
       ) {
         let url = "http://localhost:3000/register";
 
-        if (this.is_admin != null || this.is_admin == 1)
-          url = "http://localhost:3000/register-admin";
-
         this.$http
           .post(url, {
             name: this.name,
@@ -83,7 +80,7 @@ export default {
           });
       } else {
         this.password = "";
-        this.passwordConfirm = "";
+        this.password_confirmation = "";
 
         return alert("Passwords do not match");
       }
