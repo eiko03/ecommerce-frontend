@@ -3,7 +3,7 @@ import Home from "../views/Home.vue";
 import Login from "@/components/Login";
 import Register from "@/components/Register";
 import UserBoard from "@/components/UserBoard";
-import Admin from "@/components/Admin";
+// import Admin from "@/components/Admin";
 
 const routes = [
   {
@@ -41,15 +41,15 @@ const routes = [
       requiresAuth: true,
     },
   },
-  {
-    path: "/admin",
-    name: "admin",
-    component: Admin,
-    meta: {
-      requiresAuth: true,
-      is_admin: true,
-    },
-  },
+  // {
+  //   path: "/admin",
+  //   name: "admin",
+  //   component: Admin,
+  //   meta: {
+  //     requiresAuth: true,
+  //     is_admin: true,
+  //   },
+  // },
 ];
 
 const router = createRouter({
