@@ -54,7 +54,7 @@ export default {
         this.password === this.password_confirmation &&
         this.password.length > 0
       ) {
-        let url = "http://localhost:3000/register";
+        let url = "auth/register";
 
         this.$http
           .post(url, {
