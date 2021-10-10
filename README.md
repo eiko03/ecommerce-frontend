@@ -2,6 +2,10 @@
 
 ## Project setup
 ```
+npm install -g @vue/cli @vue/cli-service @vue/cli-plugin-eslint vue/cli-plugin-babel@4.5.13 vue-cli-plugin-tailwind @vue/compiler-sfc
+```
+Those modules are not in package.json as those are installed globally in my system
+```
 npm install
 ```
 
@@ -20,5 +24,4 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
