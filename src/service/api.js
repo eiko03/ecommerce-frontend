@@ -22,7 +22,7 @@ export default {
     return appClient.get("product", header);
   },
   order(payload) {
-    return appClient.post("order",payload, header);
+    return appClient.post("order", payload, header);
   },
   get_orders() {
     return appClient.get("order", header);

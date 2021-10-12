@@ -43,4 +43,3 @@ export default createStore({
     order: OrderModule,
   },
 });
-

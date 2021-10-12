@@ -56,8 +56,8 @@ export default {
       if (this.cart !== cart) {
         cart = this.cart;
       }
-       // if (!localStorage.getItem("cart")) {
-       //  cart = { orders: [{ product_id: id, qty: 1 }] };
+      // if (!localStorage.getItem("cart")) {
+      //  cart = { orders: [{ product_id: id, qty: 1 }] };
       cart.push(id);
       localStorage.setItem("cart", cart);
     },
