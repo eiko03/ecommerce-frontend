@@ -4,7 +4,8 @@
     <router-link to="/register" v-if="!user">Register |</router-link>
     <router-link to="/orders">Orders |</router-link>
     <a href="/#" @click="logout_clear"> Logout |</a>
-    <router-link to="/checkout" v-if="user || admin">Checkout</router-link>
+<router-link to="/products" v-if="user">Products |</router-link>
+    <router-link to="/checkout" v-if="user || admin">Checkout |</router-link>
     <router-link to="/create_product" v-if="admin">Add Product</router-link>
   </div>
   <router-view />
