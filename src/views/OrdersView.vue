@@ -14,7 +14,23 @@
       <label>Edit Level:</label>{{ order[0].edit_level }}
       <label>Status Level:</label>{{ order[0].orders[0]["pivot"]["status"] }}
       <div>
-        <button class="bg-gray-500 hover:bg-blue-700" @click="edit(key)">
+        <div
+          v-if="admin && order[0].orders[0]['pivot']['status'] === 0"
+          class="bg-gray-500 hover:bg-blue-700"
+        >
+          <select >
+            <option disabled value="">Select</option>
+            <option
+              v-for="item in dropdown"
+              :key="item"
+              :value="item"
+              @change="accept(item, key)"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </div>
+        <button v-else class="bg-gray-500 hover:bg-blue-700" @click="edit(key)">
           Edit Order
         </button>
       </div>
@@ -30,17 +46,41 @@ export default {
     return {
       orders: [],
       status: null,
+      admin: 0,
+      dropdown: [
+        "processing",
+        "approoved",
+        "rejected",
+        "processing",
+        "shipped",
+        "delivered",
+      ],
     };
   },
   methods: {
     edit(key) {
       localStorage.setItem("key", key);
-      this.$router.push("/products/");
+      if (JSON.parse(localStorage.getItem("user")).is_admin !== 1) {
+        this.$router.push("/products/");
+      }
+    },
+    accept(item, key) {
+      let payload = {
+        status_id: this.dropdown.indexOf(item),
+      };
+      let response = api.change_order_status(payload, key);
+      console.log(response);
     },
   },
 
   async created() {
-    const response = await api.get_orders();
+    let response = null;
+    this.admin = JSON.parse(localStorage.getItem("user")).is_admin;
+    if (this.admin === 1) {
+      response = await api.get_all_orders();
+    } else {
+      response = await api.get_orders();
+    }
     this.orders = await response.data;
   },
 };

@@ -20,7 +20,7 @@ export default {
     return {
       cart: null,
       counts: {},
-      edit:null
+      edit: null,
     };
   },
   // props:{
@@ -35,10 +35,8 @@ export default {
       for (let a of cart) {
         payload.orders.push({ product_id: a, qty: counts[a] });
       }
-      if(!this.edit)
-        api.order(payload);
-      else
-        api.orderUpdate(payload,this.edit);
+      if (!this.edit) api.order(payload);
+      else api.orderUpdate(payload, this.edit);
       localStorage.removeItem("cart");
       localStorage.removeItem("key");
     },

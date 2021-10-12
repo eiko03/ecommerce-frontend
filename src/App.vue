@@ -3,8 +3,9 @@
     <router-link to="/login" v-if="!user">Login |</router-link>
     <router-link to="/register" v-if="!user">Register |</router-link>
     <router-link to="/orders">Orders |</router-link>
-    <a href="/#" @click="logout"> Logout |</a>
-    <router-link to="/checkout" v-if="cart">Checkout</router-link>
+    <a href="/#" @click="logout_clear"> Logout |</a>
+    <router-link to="/checkout" v-if="user || admin">Checkout</router-link>
+    <router-link to="/create_product" v-if="admin">Add Product</router-link>
   </div>
   <router-view />
 </template>
@@ -14,10 +15,11 @@ export default {
     return {
       cart: null,
       user: null,
+      admin:null
     };
   },
   methods: {
-    logout() {
+    logout_clear() {
       localStorage.clear();
       this.$router.push("login");
     },
@@ -28,6 +30,11 @@ export default {
     }
     if (localStorage.getItem("user") != null) {
       this.user = Object.values(localStorage.getItem("user"));
+    }
+    try {
+      if (JSON.parse(localStorage.getItem("user")).is_admin === 1) this.admin = 1;
+    } catch {
+      this.admin = null;
     }
   },
 };

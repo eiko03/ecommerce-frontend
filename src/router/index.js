@@ -6,6 +6,7 @@ import Register from "../views/RegisterView";
 import Checkout from "../views/CheckoutView";
 import Orders from "../views/OrdersView";
 import UserBoard from "../components/UserBoard";
+import ProductCreate from "../views/CreateProductView";
 // import Admin from "@/components/Admin";
 
 const routes = [
@@ -68,15 +69,15 @@ const routes = [
       requiresAuth: true,
     },
   },
-  // {
-  //   path: "/admin",
-  //   name: "admin",
-  //   component: Admin,
-  //   meta: {
-  //     requiresAuth: true,
-  //     is_admin: true,
-  //   },
-  // },
+  {
+    path: "/create_product",
+    name: "create_product",
+    component: ProductCreate,
+    meta: {
+      requiresAuth: true,
+      is_admin: true,
+    },
+  },
 ];
 
 const router = createRouter({

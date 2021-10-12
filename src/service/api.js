@@ -24,10 +24,26 @@ export default {
   order(payload) {
     return appClient.post("order", payload, header);
   },
-  orderUpdate(payload,product_id) {
-    return appClient.put("order/"+product_id, payload, header);
+  orderUpdate(payload, product_id) {
+    return appClient.put("order/" + product_id, payload, header);
   },
   get_orders() {
     return appClient.get("order", header);
+  },
+  get_all_orders() {
+    return appClient.get("order", header);
+  },
+  change_order_status(product_id) {
+    return appClient.get("order" + product_id + "/change_status", header);
+  },
+  accept(payload, product_id) {
+    return appClient.post(
+      "order" + product_id + "/change_status",
+      payload,
+      header
+    );
+  },
+  createProduct(payload) {
+    return appClient.post("product/", payload, header);
   },
 };
