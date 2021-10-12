@@ -24,4 +24,7 @@ export default {
   order(payload) {
     return appClient.post("order",payload, header);
   },
+  get_orders() {
+    return appClient.get("order", header);
+  },
 };

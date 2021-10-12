@@ -4,6 +4,7 @@ import Login from "../views/LoginView";
 import Products from "../views/ProductView";
 import Register from "../views/RegisterView";
 import Checkout from "../views/CheckoutView";
+import Orders from "../views/OrdersView";
 import UserBoard from "../components/UserBoard";
 // import Admin from "@/components/Admin";
 
@@ -55,6 +56,14 @@ const routes = [
     path: "/checkout",
     name: "checkout",
     component: Checkout,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/orders",
+    name: "orders",
+    component: Orders,
     meta: {
       requiresAuth: true,
     },

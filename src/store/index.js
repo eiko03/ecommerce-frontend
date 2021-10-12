@@ -19,9 +19,28 @@ const ProductModule = {
   },
 };
 
+const OrderModule = {
+  state: {
+    orders: [],
+  },
+  getters: {
+    allorders: (state) => state.products,
+  },
+  mutations: {
+    setorders: (state, orders) => (state.orders = orders),
+  },
+  actions: {
+    async fetchorders({ commit }) {
+      const response = await api.get_orders();
+      commit("setorders", response.data);
+    },
+  },
+};
+
 export default createStore({
   modules: {
     product: ProductModule,
+    order: OrderModule,
   },
 });
 
