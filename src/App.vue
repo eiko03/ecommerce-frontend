@@ -2,7 +2,6 @@
   <div id="nav">
     <router-link to="/login" v-if="!user">Login |</router-link>
     <router-link to="/register" v-if="!user">Register |</router-link>
-    <router-link to="/logout" v-if="user">Logout |</router-link>
     <router-link to="/orders">Orders |</router-link>
     <a href="/#" @click="logout"> Logout |</a>
     <router-link to="/checkout" v-if="cart">Checkout</router-link>

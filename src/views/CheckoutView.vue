@@ -1,6 +1,7 @@
 <template>
   <div v-if="cart === null">Nothing In Cart</div>
   <div v-else>
+    <h3 v-if="edit" class="font-bold text-5xl">Editing Mode</h3>
     <div class="content-center p-3" v-for="cart_item in cart" :key="cart_item">
       <label>Item No:</label>{{ cart_item }}
       <div><label>Item Count:</label>{{ counts[cart_item] }}</div>
@@ -19,6 +20,7 @@ export default {
     return {
       cart: null,
       counts: {},
+      edit:null
     };
   },
   // props:{
@@ -26,9 +28,6 @@ export default {
   // },
   methods: {
     order: function (cart, counts) {
-      console.log(cart);
-      console.log(counts);
-
       let payload = {
         orders: [],
       };
@@ -36,8 +35,12 @@ export default {
       for (let a of cart) {
         payload.orders.push({ product_id: a, qty: counts[a] });
       }
-      api.order(payload);
+      if(!this.edit)
+        api.order(payload);
+      else
+        api.orderUpdate(payload,this.edit);
       localStorage.removeItem("cart");
+      localStorage.removeItem("key");
     },
   },
   created() {
@@ -50,6 +53,10 @@ export default {
         this.counts[num] = this.counts[num] ? this.counts[num] + 1 : 1;
       }
       this.cart = [...new Set(this.cart)];
+    }
+
+    if (localStorage.getItem("key") != null) {
+      this.edit = localStorage.getItem("key");
     }
   },
 };

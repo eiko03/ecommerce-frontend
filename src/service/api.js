@@ -24,6 +24,9 @@ export default {
   order(payload) {
     return appClient.post("order", payload, header);
   },
+  orderUpdate(payload,product_id) {
+    return appClient.put("order/"+product_id, payload, header);
+  },
   get_orders() {
     return appClient.get("order", header);
   },

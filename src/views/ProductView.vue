@@ -1,4 +1,5 @@
 <template>
+  <h3 v-if="edit" class="font-bold text-5xl">Editing Mode</h3>
   <div class="grid grid-cols-3">
     <!--    <div-->
     <!--      class="-->
@@ -45,6 +46,7 @@ export default {
   data() {
     return {
       cart: [],
+      edit:null,
     };
   },
   computed: mapGetters(["allproducts"]),
@@ -67,6 +69,9 @@ export default {
     this.fetchproducts();
     if (localStorage.getItem("cart") != null) {
       this.cart = Object.values(localStorage.getItem("cart"));
+    }
+    if (localStorage.getItem("key") != null) {
+      this.edit = localStorage.getItem("key");
     }
   },
 };
