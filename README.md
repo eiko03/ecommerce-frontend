@@ -5,6 +5,8 @@
 npm install -g @vue/cli @vue/cli-service @vue/cli-plugin-eslint vue/cli-plugin-babel@4.5.13 vue-cli-plugin-tailwind @vue/compiler-sfc
 ```
 Those modules are not in package.json as those are installed globally in my system
+```cp .env.backup .env```
+generate env
 ```
 npm install
 ```
