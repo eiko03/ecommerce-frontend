@@ -21,4 +21,7 @@ export default {
   get_products() {
     return appClient.get("product", header);
   },
+  order(payload) {
+    return appClient.post("order",payload, header);
+  },
 };

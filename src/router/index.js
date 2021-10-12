@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/LoginView";
 import Products from "../views/ProductView";
 import Register from "../views/RegisterView";
+import Checkout from "../views/CheckoutView";
 import UserBoard from "../components/UserBoard";
 // import Admin from "@/components/Admin";
 
@@ -46,6 +47,14 @@ const routes = [
     path: "/products",
     name: "products",
     component: Products,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: Checkout,
     meta: {
       requiresAuth: true,
     },

@@ -1,11 +1,36 @@
 <template>
   <div id="nav">
-    <router-link to="/login">Login</router-link> |
-    <router-link to="/register">Register</router-link>
+
+    <router-link to="/login" v-if="!user">Login |</router-link>
+    <router-link to="/register" v-if="!user">Register |</router-link>
+    <router-link to="/logout" v-if="user">Logout |</router-link>
+    <router-link to="/checkout" v-if="cart">
+      Checkout
+    </router-link>
   </div>
   <router-view />
 </template>
+<script>
+export default {
+  data() {
+    return {
+      cart: null,
+      user: null,
+    };
+  },
+  created() {
 
+    if (localStorage.getItem("cart") != null) {
+      this.cart = Object.values(localStorage.getItem("cart"));
+
+    }
+    if (localStorage.getItem("user") != null) {
+      this.user = Object.values(localStorage.getItem("user"));
+
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -44,43 +44,29 @@ export default {
   name: "ProductView",
   data() {
     return {
-      cart: {},
+      cart: [],
     };
   },
   computed: mapGetters(["allproducts"]),
   methods: {
     ...mapActions(["fetchproducts"]),
     handleCart(id) {
-      console.log(JSON.stringify(this.cart), id);
-      let cart = {};
+      let cart = [];
       console.log(JSON.stringify(cart));
-      if (JSON.stringify(this.cart) !== JSON.stringify(cart)) {
-        cart = JSON.parse(this.cart);
-        cart = Object.keys(JSON.parse(this.cart)).map((key) => [
-          Number(key),
-          JSON.parse(this.cart)[key]
-        ]);
+      if (this.cart !== cart) {
+        cart = this.cart;
       }
-
-      if (!localStorage.getItem("cart")) {
-        cart = { orders: [{ product_id: id, qty: 1 }] };
-      } else {
-        console.log(typeof cart);
-        cart["orders"].push({
-          product_id: id,
-          qty: 1,
-        });
-      }
+       // if (!localStorage.getItem("cart")) {
+       //  cart = { orders: [{ product_id: id, qty: 1 }] };
+      cart.push(id);
       localStorage.setItem("cart", cart);
-
-      // console.log(cart);
     },
   },
   created() {
     console.log(localStorage.getItem("cart"));
     this.fetchproducts();
     if (localStorage.getItem("cart") != null) {
-      this.cart = localStorage.getItem("cart");
+      this.cart = Object.values(localStorage.getItem("cart"));
     }
   },
 };
