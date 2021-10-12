@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 // import Home from "../views/Home.vue";
 import Login from "../views/LoginView";
+import Products from "../views/ProductView";
 import Register from "../views/RegisterView";
 import UserBoard from "../components/UserBoard";
 // import Admin from "@/components/Admin";
@@ -37,6 +38,14 @@ const routes = [
     path: "/dashboard",
     name: "userboard",
     component: UserBoard,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/products",
+    name: "products",
+    component: Products,
     meta: {
       requiresAuth: true,
     },

@@ -6,6 +6,7 @@ import "./assets/tailwind.css";
 import Axios from "axios";
 import VueAxios from "vue-axios";
 
+
 // eslint-disable-next-line no-unused-vars
 let app;
 
